@@ -23,12 +23,18 @@ namespace LinqColeccion
 
         public void obtenerAlumnosPorCarrera(int IdCarrera)
         {
-            IEnumerable<Alumno> resultado = from alumno in alumnos where alumno.IdCarrera == IdCarrera select alumno;
+             var resultado = from alumno in alumnos join carrera in carreras
+                                            on alumno.IdCarrera equals carrera.IdCarrera
+                                            where alumno.IdCarrera == IdCarrera
+                                            select new { alumno.Nombre, alumno.Matricula, alumno.Promedio,
+                                                carrera.Nombre };
 
-            foreach (Alumno alumno in resultado)
+            foreach (var alumno in resultado)
             {
-                alumno.getDatosAlumno();
+                Console.WriteLine("Alumno {0} con matricula {1} y promedio {2} en la carrera {3}",
+                alumno.Nombre, alumno.Matricula, alumno.Promedio, alumno.NombreCarrera);
             }
+
         }
     }
 }
