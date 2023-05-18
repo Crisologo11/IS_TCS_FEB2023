@@ -13,8 +13,8 @@ namespace LinqColeccion
 
         public ControlAlumnos()
         {
-            carreras.Add(new Carrera { IdCarrera = 1, Nombre = "Ingeniería de Software" });
-            carreras.Add(new Carrera { IdCarrera = 2, Nombre = "Redes y Servicios de Computo" });
+            carreras.Add(new Carrera { IdCarrera = 1, NombreCarrera = "Ingeniería de Software" });
+            carreras.Add(new Carrera { IdCarrera = 2, NombreCarrera = "Redes y Servicios de Computo" });
 
             alumnos.Add(new Alumno { IdAlumno = 1, Nombre = "Juan Perez Sanchez", Matricula = "s090032", Promedio = 8.9, IdCarrera = 1 });
             alumnos.Add(new Alumno { IdAlumno = 2, Nombre = "María Rodríguez Martínez", Matricula = "s421512", Promedio = 9.2, IdCarrera = 2 });
@@ -26,8 +26,7 @@ namespace LinqColeccion
              var resultado = from alumno in alumnos join carrera in carreras
                                             on alumno.IdCarrera equals carrera.IdCarrera
                                             where alumno.IdCarrera == IdCarrera
-                                            select new { alumno.Nombre, alumno.Matricula, alumno.Promedio,
-                                                carrera.Nombre };
+                                            select new { alumno.Nombre, alumno.Matricula, alumno.Promedio, carrera.NombreCarrera };
 
             foreach (var alumno in resultado)
             {
